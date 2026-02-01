@@ -3,9 +3,9 @@
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
 PACKAGES="linux-headers zsh bat eza ripgrep thunar base-devel git ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look rsync"
-AUR_PACKAGES="paru-bin zen-browser-bin dank-material-shell pear-desktop pokeget rtl8821ce-dkms-git sddm-theme-tokyo-night visual-studio-code-bin"
+AUR_PACKAGES="paru-bin zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git sddm-theme-tokyo-night visual-studio-code-bin"
 
-echo "🎨 Iniciando instalación estilo 'Dank' (Sin Plymouth)..."
+echo "🎨 Iniciando instalación estilo 'Dank'.."
 
 # Crear carpeta temporal única para todo el script
 WORK_DIR=$(mktemp -d)
@@ -21,6 +21,9 @@ if ! command -v paru &> /dev/null; then
     cd "$WORK_DIR/paru" && makepkg -si --noconfirm
     cd -
 fi
+
+curl -fsSL https://install.danklinux.com | sh
+
 
 # 3. Instalar aplicaciones de AUR
 echo "🚀 Instalando paquetes de AUR..."
