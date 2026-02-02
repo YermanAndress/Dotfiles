@@ -1,0 +1,17 @@
+export XDG_CURRENT_DESKTOP=Hyprland
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Hyprland
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_PLATFORMTHEME=gtk3
+export QT_QPA_PLATFORMTHEME_QT6=gtk3
+export CLUTTER_BACKEND=wayland
+export GDK_BACKEND=wayland
+export ELECTRON_OZONE_PLATFORM_HINT=wayland
+export SDL_VIDEODRIVER=wayland
+export LIBVA_DRIVER_NAME=radeonsi
+export VDPAU_DRIVER=radeonsi
+export MOZ_ENABLE_WAYLAND=1
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+export TERMINAL=kitty
+export FILE_MANAGER=thunar
