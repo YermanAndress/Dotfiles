@@ -3,7 +3,7 @@
 # --- Configuración VM ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
 PACKAGES="zsh bat eza ripgrep thunar base-devel git ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look rsync virtualbox-guest-utils"
-AUR_PACKAGES="paru-bin zen-browser-bin pokeget sddm-theme-tokyo-night visual-studio-code-bin"
+AUR_PACKAGES="zen-browser-bin pokeget sddm-theme-tokyo-night visual-studio-code-bin"
 
 echo "🖥️ Iniciando instalación en Máquina Virtual..."
 
@@ -41,7 +41,7 @@ rm -rf $HOME/tmp_dotfiles
 
 # 8. Restaurar archivos de sistema (Adaptado a VM)
 echo "🔧 Restaurando configuraciones..."
-BACKUP_PATH="$HOME/SystemBackups/etc"
+BACKUP_PATH="$HOME/Dotfiles/Documentos/Backup/SystemBackups/etc"
 
 if [ -d "$BACKUP_PATH" ]; then
     # Solo copiamos lo que tiene sentido en una VM (pacman, mkinitcpio)

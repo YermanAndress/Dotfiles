@@ -1,6 +1,7 @@
 # ===============================================================
 # 1. ENTORNO Y PATHS (Prioridad Máxima)
 # ===============================================================
+export PATH=$HOME/.local/bin:$PATH
 export FNM_DIR="$HOME/.local/share/fnm"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$FNM_DIR:$BUN_INSTALL/bin:$PATH"
@@ -63,7 +64,7 @@ eval "$(starship init zsh)"
 # ===============================================================
 alias proyectos="cd /mnt/HDD/Programacion/"
 alias idea='uwsm app -- intellij-idea-ultimate-edition'
-alias zed='uwsm app -- zeditor'
+#alias zed='uwsm app -- zeditor'
 alias code='uwsm app -- code'
 
 # eza (sustituto de ls)
