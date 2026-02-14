@@ -1,0 +1,68 @@
+# =========================================================
+# CONFIGURACIÓN i3 - VERSIÓN PURA PARA CIBERSEGURIDAD (VM)
+# =========================================================
+
+set $mod Mod4
+font pango:Inter 12 
+
+# --- AUTOSTART ESENCIAL ---
+exec --no-startup-id spice-vdagent                   # Portapapeles compartido y resolución
+exec --no-startup-id /usr/bin/lxqt-policykit-agent
+exec --no-startup-id picom -b                        # Transparencias y sombras (ligero)
+exec --no-startup-id polybar                         # Tu barra de herramientas
+exec_always --no-startup-id setxkbmap -layout latam  # Idioma teclado
+
+# --- GAPS & ESTÉTICA (LOOK HYPRLAND) ---
+gaps inner 10
+gaps outer 5
+default_border pixel 2
+smart_borders on
+
+# Colores (Morado HTB/Arch)
+client.focused          #b088f0 #282A2E #ffffff #b088f0   #b088f0
+client.unfocused        #282A2E #282A2E #888888 #282A2E   #282A2E
+
+# --- ATAJOS DE APLICACIONES ---
+bindsym $mod+q exec --no-startup-id kitty
+bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+space exec --no-startup-id rofi -show drun
+
+# --- ATAJOS PARA PENTESTING (HTB) ---
+# Abrir Clipse (Historial portapapeles) para copiar flags rápido
+bindsym $mod+v exec --no-startup-id kitty --class "clipse" -e clipse 
+
+# --- GESTIÓN DE VENTANAS ---
+bindsym $mod+c kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+t floating toggle
+
+# Navegación (Super + Flechas)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Mover ventanas (Super + Shift + Flechas)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# --- WORKSPACES ---
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+# (Añade los que necesites hasta el 9)
+
+# --- REGLAS DE VENTANA FLOTANTE ---
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+for_window [class="clipse"] floating enable, resize set 600 400
+
+# --- RECARGA Y SALIDA ---
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-msg exit"
