@@ -3,7 +3,7 @@
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
 PACKAGES="linux-headers zsh bat eza ripgrep thunar base-devel git ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look rsync"
-AUR_PACKAGES="paru-bin zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git sddm-theme-tokyo-night visual-studio-code-bin"
+AUR_PACKAGES="paru-bin zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git visual-studio-code-bin"
 
 echo "🎨 Iniciando instalación estilo 'Dank'.."
 
@@ -12,6 +12,7 @@ WORK_DIR=$(mktemp -d)
 
 # 1. Actualizar sistema e instalar dependencias básicas
 sudo pacman -Syu --noconfirm
+sudo pacman -Syu --needed base-devel --noconfirm
 sudo pacman -S --needed --noconfirm $PACKAGES
 
 # 2. Instalar Paru (si no está instalado)
@@ -44,12 +45,10 @@ git clone https://github.com/vinceliuice/Solara-grub2-theme.git "$WORK_DIR/solar
 cd "$WORK_DIR/solara" && sudo ./install.sh
 cd -
 
-# 6. Desplegar Dotfiles (Método Git Bare)
-echo "📂 Clonando configuraciones..."
-# Clonamos directamente la rama main para evitar líos de master/main
-git clone --separate-git-dir=$HOME/.cfg -b main "$DOTFILES_REPO" $HOME/tmp_dotfiles
-rsync --recursive -vhP $HOME/tmp_dotfiles/ $HOME/
-rm -rf $HOME/tmp_dotfiles
+git clone https://github.com/rototrash/tokyo-night-sddm.git "$WORK_DIR/sddm-theme"
+sudo mv "$WORK_DIR/sddm-theme" /usr/share/sddm/themes/tokyo-night-sddm
+echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee /etc/sddm.conf
+
 
 # 8. Restaurar archivos de sistema (SystemBackups)
 echo "🔧 Restaurando configuraciones de sistema (/etc)..."
@@ -93,6 +92,17 @@ if [ -d "$BACKUP_PATH" ]; then
     echo "✅ Restauración de /etc completada."
 else
     echo "⚠️  No se encontró la carpeta $BACKUP_PATH. Saltando paso."
+fi
+
+if [ -d "$CONFIG_BACKUP_PATH" ]; then
+
+    cp -f "$CONFIG_BACKUP_PATH/.config" ~ -r
+    cp -f "$CONFIG_BACKUP_PATH/Descargas" ~ -r
+    cp -f "$CONFIG_BACKUP_PATH/Descargas" ~ -r
+    cp -f "$CONFIG_BACKUP_PATH/Pictures" ~ -r
+    cp -f "$CONFIG_BACKUP_PATH/Scripts" ~ -r
+    cp -f "$CONFIG_BACKUP_PATH/.zshrc" ~ -r
+
 fi
 
 # Limpieza final de temporales

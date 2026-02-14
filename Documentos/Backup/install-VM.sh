@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # --- Configuración VM ---
-PACKAGES="zsh bat eza ripgrep thunar git ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look rsync virtualbox-guest-utils"
-AUR_PACKAGES="zen-browser-bin pokeget sddm-theme-tokyo-night visual-studio-code-bin quickshell-git"
+PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look virtualbox-guest-utils"
+AUR_PACKAGES="pokeget visual-studio-code-bin quickshell-git"
 
 echo "🖥️ Iniciando instalación en Máquina Virtual..."
 
@@ -10,7 +10,8 @@ WORK_DIR=$(mktemp -d)
 
 # 1. Actualizar e instalar base
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed base-devel --noconfirm $PACKAGES
+sudo pacman -Syu --needed base-devel --noconfirm
+sudo pacman -S --needed --noconfirm $PACKAGES
 
 # Activar servicios de VM inmediatamente
 sudo systemctl enable --now vboxservice.service
@@ -35,12 +36,11 @@ sudo chsh -s $(which zsh) $USER
 
 curl -fsSL https://install.danklinux.com | sh
 
+#  Instalar sddm-theme-tokyo-night
+git clone https://github.com/rototrash/tokyo-night-sddm.git "$WORK_DIR/sddm-theme"
+sudo mv "$WORK_DIR/sddm-theme" /usr/share/sddm/themes/tokyo-night-sddm
 
-# 6. Desplegar Dotfiles (Git Bare)
-#echo "📂 Clonando configuraciones..."
-#git clone --separate-git-dir=$HOME/.cfg -b main "$DOTFILES_REPO" $HOME/tmp_dotfiles
-#rsync --recursive -vhP $HOME/tmp_dotfiles/ $HOME/
-#rm -rf $HOME/tmp_dotfiles
+echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee /etc/sddm.conf
 
 # 8. Restaurar archivos de sistema (Adaptado a VM)
 echo "🔧 Restaurando configuraciones..."

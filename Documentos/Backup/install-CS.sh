@@ -10,7 +10,8 @@ WORK_DIR=$(mktemp -d)
 
 # 1. Actualizar e instalar base
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed base-devel --noconfirm $PACKAGES
+sudo pacman -Syu --needed base-devel --noconfirm
+sudo pacman -S --needed --noconfirm $PACKAGES
 
 # Activar servicios de VM inmediatamente
 #sudo systemctl enable --now vboxservice.service
