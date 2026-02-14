@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Configuración VM ---
-PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look firefox virtualbox-guest-utils"
+PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look firefox virtualbox-guest-utils polybar picom feh rofi kitty  lxappearance lxqt-policykit-agent scrot slop xclip jq ttf-iosevka-nerd"
 AUR_PACKAGES="pokeget visual-studio-code-bin"
 
 echo "🖥️ Iniciando instalación en Máquina Virtual..."
@@ -13,9 +13,8 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S --needed base-devel --noconfirm $PACKAGES
 
 # Activar servicios de VM inmediatamente
-sudo systemctl enable --now vboxservice.service
+#sudo systemctl enable --now vboxservice.service
 sudo systemctl --user enable --now dbus-broker.service
-eqeq
 sudo usermod -aG video $USER
 
 
