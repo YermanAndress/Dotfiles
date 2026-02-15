@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Configuración VM ---
-PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look firefox virtualbox-guest-utils polybar picom feh rofi kitty  lxappearance lxqt-policykit-agent scrot slop xclip jq ttf-iosevka-nerd"
+PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look firefox virtualbox-guest-utils polybar picom feh rofi kitty  lxappearance lxqt-policykit scrot slop xclip jq ttf-iosevka-nerd"
 AUR_PACKAGES="pokeget visual-studio-code-bin"
 
 echo "🖥️ Iniciando instalación en Máquina Virtual..."
@@ -28,12 +28,11 @@ cd -e
 # 3. AUR
 paru -S --noconfirm $AUR_PACKAGES
 
-
 # 4. Starship y Shell
 curl -sS https://starship.rs/install.sh | sh
 sudo chsh -s $(which zsh) $USER
 
-curl -fsSL https://install.danklinux.com | sh
+#curl -fsSL https://install.danklinux.com | sh
 
 #  Instalar sddm-theme-tokyo-night
 git clone https://github.com/rototrash/tokyo-night-sddm.git "$WORK_DIR/sddm-theme"
