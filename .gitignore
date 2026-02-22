@@ -21,6 +21,9 @@ Documentos/*
 
 # Apps en .config
 !.config/nvim/
+!.config/dunst/
+!.config/rofi/
+!.config/picom/
 !.config/Thunar/
 !.config/kitty/
 !.config/fastfetch/
