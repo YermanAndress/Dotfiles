@@ -1,0 +1,12 @@
+[Unit]
+Description=Music Player Daemon Socket
+
+[Socket]
+# Cambiamos la ruta a /tmp para que coincida con tu rmpc
+ListenStream=/tmp/mpd_socket
+ListenStream=6600
+KeepAlive=true
+PassCredentials=true
+
+[Install]
+WantedBy=sockets.target

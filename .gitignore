@@ -1,6 +1,6 @@
 # 1. Ignorar todo
 *
-
+!*/
 # 2. No ignorar el propio .gitignore
 !.gitignore
 
@@ -15,25 +15,47 @@
 # 4. LISTA BLANCA (Lo que SÍ quieres guardar)
 
 # Apps en .config
-!.config/nvim/
-!.config/dunst/
-!.config/rofi/
-!.config/picom/
-!.config/Thunar/
-!.config/kitty/
-!.config/fastfetch/
-!.config/foot/
-!.config/hypr/
-!.config/uwsm/
-!.config/i3/
-!.config/polybar/
+!.config/nvim/**
+!.config/dunst/**
+!.config/rofi/**
+!.config/picom/**
+!.config/Thunar/**
+!.config/kitty/**
+!.config/fastfetch/**
+!.config/foot/**
+!.config/hypr/**
+!.config/uwsm/**
+!.config/i3/**
+!.config/polybar/**
+!.config/systemd/**
 !.config/starship.toml
-!.config/systemd/
 
 # Música
-!.config/mpd/
-!.config/mpv/
-!.config/rmpc/
+!.config/mpd/**
+!.config/mpv/**
+!.config/rmpc/**
 
 # Contenido específico en subcarpetas
-!Documentos/Backup/
+!Documentos/Backup/**
+
+
+# Ignore
+.bun/
+.cache/
+.cargo/
+.donet/
+.gnupg/
+.java/
+.local/
+.m2/
+.mozilla/
+.pki/
+.vscode/
+.zen/
+Descargas/
+Documentos/Obsidian\ Vault/
+go/
+Music/
+
+.gitconfig
+.gitcredentials
