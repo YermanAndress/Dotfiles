@@ -12,12 +12,7 @@
 !Scripts/
 !Descargas/
 
-# 4. IGNORAR TODO dentro de esas carpetas por defecto
-# (Así evitas basura de otras apps en .config)
-.config/*
-Documentos/*
-
-# 5. LISTA BLANCA (Lo que SÍ quieres guardar)
+# 4. LISTA BLANCA (Lo que SÍ quieres guardar)
 
 # Apps en .config
 !.config/nvim/
