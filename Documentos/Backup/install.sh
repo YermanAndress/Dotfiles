@@ -2,8 +2,8 @@
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
-PACKAGES="linux-headers zsh bat eza ripgrep thunar base-devel git ttf-firacode-nerd ttf-nerd-fonts-symbols-common nwg-look rsync"
-AUR_PACKAGES="paru-bin zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git visual-studio-code-bin"
+PACKAGES="linux-headers zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look rsync"
+AUR_PACKAGES="zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git visual-studio-code-bin"
 
 echo "🎨 Iniciando instalación estilo 'Dank'.."
 
@@ -15,13 +15,12 @@ sudo pacman -Syu --noconfirm
 sudo pacman -Syu --needed base-devel --noconfirm
 sudo pacman -S --needed --noconfirm $PACKAGES
 
-# 2. Instalar Paru (si no está instalado)
-if ! command -v paru &> /dev/null; then
-    echo "📦 Instalando Paru..."
-    git clone https://aur.archlinux.org/paru-bin "$WORK_DIR/paru"
-    cd "$WORK_DIR/paru" && makepkg -si --noconfirm
-    cd -
-fi
+# 2. Instalar Paru
+echo "📦 Instalando Paru..."
+git clone https://aur.archlinux.org/paru-bin "$WORK_DIR/paru"
+cd "$WORK_DIR/paru" && makepkg -si --noconfirm
+cd -
+
 
 curl -fsSL https://install.danklinux.com | sh
 
@@ -33,11 +32,8 @@ paru -S --noconfirm $AUR_PACKAGES
 # 4. Configurar Starship y ZSH
 echo "🚀 Instalando Starship..."
 curl -sS https://starship.rs/install.sh | sh -s -- -y
+chsh -s $(which zsh)
 
-if [ "$SHELL" != "/usr/bin/zsh" ]; then
-    echo "🐚 Cambiando a ZSH..."
-    chsh -s $(which zsh)
-fi
 
 # 5. Instalar tema de Grub (Solara)
 echo "🖼️ Instalando tema de Grub..."
@@ -53,6 +49,25 @@ echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee /etc/sddm.conf
 # 8. Restaurar archivos de sistema (SystemBackups)
 echo "🔧 Restaurando configuraciones de sistema (/etc)..."
 BACKUP_PATH="$HOME/SystemBackups/etc"
+CONFIG_BACKUP_PATH="$HOME/Dotfiles/"
+
+
+git clone --bare "$DOTFILES_REPO" "$HOME/.cfg"
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+config checkout -f
+
+# if [ -d "$CONFIG_BACKUP_PATH" ]; then
+
+#     cp -f "$CONFIG_BACKUP_PATH/.config" ~ -r
+#     cp -f "$CONFIG_BACKUP_PATH/Documentos" ~ -r
+#     cp -f "$CONFIG_BACKUP_PATH/Descargas" ~ -r
+#     cp -f "$CONFIG_BACKUP_PATH/Pictures" ~ -r
+#     cp -f "$CONFIG_BACKUP_PATH/Scripts" ~ -r
+#     chmod +x $HOME/Scripts/*
+#     cp -f "$CONFIG_BACKUP_PATH/.zshrc" ~ -r
+
+# fi
+
 
 if [ -d "$BACKUP_PATH" ]; then
     # 1. Archivos base en /etc
@@ -94,16 +109,7 @@ else
     echo "⚠️  No se encontró la carpeta $BACKUP_PATH. Saltando paso."
 fi
 
-if [ -d "$CONFIG_BACKUP_PATH" ]; then
 
-    cp -f "$CONFIG_BACKUP_PATH/.config" ~ -r
-    cp -f "$CONFIG_BACKUP_PATH/Descargas" ~ -r
-    cp -f "$CONFIG_BACKUP_PATH/Descargas" ~ -r
-    cp -f "$CONFIG_BACKUP_PATH/Pictures" ~ -r
-    cp -f "$CONFIG_BACKUP_PATH/Scripts" ~ -r
-    cp -f "$CONFIG_BACKUP_PATH/.zshrc" ~ -r
-
-fi
 
 # Limpieza final de temporales
 rm -rf "$WORK_DIR"

@@ -83,7 +83,7 @@ alias cls='clear'
 alias pyvenv='python -m venv .venv'
 
 
-echo "alias config='/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME'" >> ~/.zshrc
+alias config='/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME'
 
 # ===============================================================
 # 5. HISTORIAL Y BINDS (Fijados para Wayland)
@@ -106,6 +106,8 @@ bindkey '^[[A' up-line-or-history               # Arriba
 bindkey '^[[B' down-line-or-history             # Abajo
 bindkey "^[[H" beginning-of-line                # Home
 bindkey "^[[F" end-of-line                      # End
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
