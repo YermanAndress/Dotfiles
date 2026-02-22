@@ -1,0 +1,41 @@
+# 1. Ignorar todo
+*
+
+# 2. No ignorar el propio .gitignore
+!.gitignore
+
+# 3. PERMITIR carpetas raíz (esto es necesario para que Git pueda entrar)
+!.config/
+!.zshrc
+!Documentos/
+!Pictures/
+!Scripts/
+!Descargas/
+
+# 4. IGNORAR TODO dentro de esas carpetas por defecto
+# (Así evitas basura de otras apps en .config)
+.config/*
+Documentos/*
+
+# 5. LISTA BLANCA (Lo que SÍ quieres guardar)
+
+# Apps en .config
+!.config/nvim/
+!.config/Thunar/
+!.config/kitty/
+!.config/fastfetch/
+!.config/foot/
+!.config/hypr/
+!.config/uwsm/
+!.config/i3/
+!.config/polybar/
+!.config/starship.toml
+!.config/systemd/
+
+# Música
+!.config/mpd/
+!.config/mpv/
+!.config/rmpc/
+
+# Contenido específico en subcarpetas
+!Documentos/Backup/

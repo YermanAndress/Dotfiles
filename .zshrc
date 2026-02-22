@@ -1,14 +1,14 @@
 # ===============================================================
 # 1. ENTORNO Y PATHS (Prioridad Máxima)
 # ===============================================================
-export PATH=$HOME/.local/bin:$PATH
 export FNM_DIR="$HOME/.local/share/fnm"
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$FNM_DIR:$BUN_INSTALL/bin:$PATH"
-export FNM_DIR="$HOME/.local/share/fnm"
-export TERMINAL="kitty"
+
+export PATH="$FNM_DIR:$BUN_INSTALL/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
 export FILE_MANAGER="thunar"
-export EDITOR="zed --wait"
+export EDITOR="code --wait"
+export TERMINAL="kitty"
 
 # ===============================================================
 # 2. GESTOR DE PLUGINS: ZINIT (Configuración Ultra-Turbo)
@@ -62,10 +62,12 @@ eval "$(starship init zsh)"
 # ===============================================================
 # 4. ALIAS Y MODERN TOOLS
 # ===============================================================
-alias proyectos="cd /mnt/HDD/Programacion/"
+alias proyectos="cd /mnt/HDD/Programacion/Proyectos"
+alias uni="cd /mnt/HDD/Programacion/Universidad"
+alias cursos="cd /mnt/HDD/Programacion/Cursos"
 alias idea='uwsm app -- intellij-idea-ultimate-edition'
-#alias zed='uwsm app -- zeditor'
 alias code='uwsm app -- code'
+alias obsidian='uwsm app -- .local/bin/Obsidian-1.11.7.AppImage'
 
 # eza (sustituto de ls)
 alias ls='eza --icons --group-directories-first'
@@ -77,6 +79,11 @@ alias tree='eza --tree --icons'
 alias grep='rg'
 alias cat='bat'
 alias cls='clear'
+
+alias pyvenv='python -m venv .venv'
+
+
+echo "alias config='/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME'" >> ~/.zshrc
 
 # ===============================================================
 # 5. HISTORIAL Y BINDS (Fijados para Wayland)
@@ -99,3 +106,9 @@ bindkey '^[[A' up-line-or-history               # Arriba
 bindkey '^[[B' down-line-or-history             # Abajo
 bindkey "^[[H" beginning-of-line                # Home
 bindkey "^[[F" end-of-line                      # End
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
