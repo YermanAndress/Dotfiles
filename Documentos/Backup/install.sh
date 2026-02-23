@@ -2,7 +2,7 @@
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
-PACKAGES="linux-headers zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look rsync"
+PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look rsync"
 AUR_PACKAGES="zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git visual-studio-code-bin"
 
 echo "🎨 Iniciando instalación estilo 'Dank'.."
@@ -45,6 +45,9 @@ git clone https://github.com/rototrash/tokyo-night-sddm.git "$WORK_DIR/sddm-them
 sudo mv "$WORK_DIR/sddm-theme" /usr/share/sddm/themes/tokyo-night-sddm
 echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee /etc/sddm.conf
 
+git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+cd auto-cpufreq && sudo ./auto-cpufreq-installer
+sudo auto-cpufreq --install
 
 # 8. Restaurar archivos de sistema (SystemBackups)
 echo "🔧 Restaurando configuraciones de sistema (/etc)..."
@@ -74,6 +77,7 @@ if [ -d "$BACKUP_PATH" ]; then
     sudo cp -f "$BACKUP_PATH/fstab" /etc/fstab
     sudo cp -f "$BACKUP_PATH/mkinitcpio.conf" /etc/mkinitcpio.conf
     sudo cp -f "$BACKUP_PATH/pacman.conf" /etc/pacman.conf
+    sudo cp -f "$BACKUP_PATH/auto-cpufreq.conf" /etc/auto-cpufreq.conf
 
     # 2. Configuración de GRUB (si aplica)
     if [ -f "$BACKUP_PATH/default/grub" ]; then
