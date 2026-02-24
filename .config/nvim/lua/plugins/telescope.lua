@@ -3,11 +3,13 @@ return {
   "nvim-telescope/telescope.nvim",
   tag = "0.1.8",
   dependencies = { "nvim-lua/plenary.nvim" },
+  keys = {
+    { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Buscar archivos" },
+    { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Buscar texto" },
+    { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers abiertos" },
+    { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Ayuda" },
+  },
   config = function()
     local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>ff", builtin.find_files, {}) -- Buscar archivos
-    vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})  -- Buscar texto dentro de archivos
-    vim.keymap.set("n", "<leader>fb", builtin.buffers, {})    -- Ver buffers abiertos
-    vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})  -- Ayuda
   end,
 }

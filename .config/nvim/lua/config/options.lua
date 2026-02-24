@@ -1,71 +1,62 @@
--- OPTIONS ---------------------------------------------
+-- OPTIONS - CONFIGURACIÓN OPTIMIZADA PARA RENDIMIENTO
 
 local opt = vim.opt
 
-
+---------------------------------------------------------
+-- NEOVIDE (GUI)
+---------------------------------------------------------
 if vim.g.neovide then
-    -- Fuente (Asegúrate de tener instalada una Nerd Font)
     vim.opt.guifont = "FiraCode Nerd Font:h13"
-
-    -- Animaciones (El corazón de Neovide)
-    vim.g.neovide_cursor_animation_length = 0.13  -- Velocidad del cursor (segundos)
-    vim.g.neovide_cursor_trail_size = 0.8         -- Tamaño de la estela
-    vim.g.neovide_cursor_vfx_mode = "railgun"    -- ¡Efecto de partículas al escribir! (opcional)
-    
+    vim.g.neovide_cursor_animation_length = 0.08  -- Reducido para mejor rendimiento
+    vim.g.neovide_cursor_trail_size = 0.6
+    vim.g.neovide_cursor_vfx_mode = "railgun"
 end
 
 ---------------------------------------------------------
--- BASICS
+-- INTERFAZ BÁSICA
 ---------------------------------------------------------
-opt.number = true             -- mostrar número de línea
-opt.relativenumber = false    -- números relativos
-opt.mouse = "a"               -- habilitar mouse
-opt.clipboard = "unnamedplus" -- usar portapapeles del sistema
-opt.swapfile = false          -- desactivar swapfile
-opt.undofile = true           -- historial de cambios persistente
+opt.number = true
+opt.relativenumber = false
+opt.mouse = "a"
+opt.clipboard = "unnamedplus"
+opt.swapfile = false
+opt.undofile = true
+opt.confirm = true
 
+---------------------------------------------------------
+-- RENDIMIENTO 🚀
+---------------------------------------------------------
+opt.updatetime = 300         -- Refresco de diagnósticos (ms)
+opt.timeoutlen = 400         -- Tiempo para keymaps (ms)
+opt.lazyredraw = true        -- 🚀 Evita redraws innecesarios (MEJOR)
+opt.synmaxcol = 200          -- 🚀 Resaltado de sintaxis hasta columna 200
+opt.ttyfast = true           -- 🚀 Asume conexión rápida a terminal
 
 ---------------------------------------------------------
--- Wrap
+-- DISPLAY Y NAVEGACIÓN
 ---------------------------------------------------------
-opt.wrap = true          -- Activa el salto de línea visual
-opt.linebreak = true     -- Corta por palabras completas, no a mitad de una letra
-opt.breakindent = true   -- Mantiene la sangría (indentación) en la línea saltada
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
+opt.termguicolors = true
+opt.signcolumn = "yes"
+opt.cursorline = true
+opt.scrolloff = 10
+opt.splitright = true
+opt.splitbelow = true
 
 ---------------------------------------------------------
 -- INDENTACIÓN
 ---------------------------------------------------------
-opt.expandtab = true         -- convertir TAB en espacios
-opt.shiftwidth = 2           -- tamaño de indentación
-opt.tabstop = 2              -- tamaño del TAB
-opt.smartindent = true       -- indentación inteligente
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.smartindent = true
 
 ---------------------------------------------------------
 -- BÚSQUEDA
 ---------------------------------------------------------
-opt.ignorecase = true        -- ignora mayúsculas al buscar...
-opt.smartcase = true         -- ...a menos que la búsqueda tenga mayúsculas
-opt.incsearch = true         -- búsqueda incremental
-opt.hlsearch = true          -- resalta coincidencias
-
----------------------------------------------------------
--- APARIENCIA
----------------------------------------------------------
-opt.termguicolors = true     -- colores 24-bit
-opt.signcolumn = "yes"       -- columna de signos siempre visible
-opt.cursorline = true        -- resaltar línea actual
-opt.scrolloff = 10           -- margen al mover cursor
-
----------------------------------------------------------
--- ARCHIVOS / PATH
----------------------------------------------------------
-opt.confirm = true           -- confirmar guardado en buffers modificados
-opt.splitright = true        -- splits verticales a la derecha
-opt.splitbelow = true        -- splits horizontales abajo
-
----------------------------------------------------------
--- RENDIMIENTO
----------------------------------------------------------
-opt.updatetime = 200         -- refresco rápido
-opt.timeoutlen = 400         -- tiempo para mappings
-opt.lazyredraw = false        -- evita redibujar innecesario
+opt.ignorecase = true
+opt.smartcase = true
+opt.incsearch = true
+opt.hlsearch = true

@@ -6,30 +6,32 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
+  lazy = false,
   config = function()
     require("neo-tree").setup({
+      close_if_last_window = false,
       window = {
         position = "right",
         width = 35,
       },
       filesystem = {
-
-        -- 🔥 COMPACTA CARPETAS VACÍAS
-        group_empty_dirs = true,
-
-        -- Cambio realizado aquí: de booleano a tabla
+        -- Hijack netrw cuando abres un directorio
+        hijack_netrw_behavior = "open_default",
+        
+        -- Sigue el archivo actual
         follow_current_file = {
-          enabled = true, -- Esto soluciona el aviso
-          leave_dirs_open = false, -- Opcional: mantiene abiertas las carpetas al seguir el archivo
+          enabled = true,
+          leave_dirs_open = false,
         },
 
-        -- OPCIONAL: Para que se vea aún más compacto
+        -- Compacta carpetas vacías
+        group_empty_dirs = true,
+
+        -- Filtros
         filtered_items = {
           hide_dotfiles = false,
           hide_gitignored = true,
         },
-
-        hijack_netrw_behavior = "open_default",
       },
     })
   end,

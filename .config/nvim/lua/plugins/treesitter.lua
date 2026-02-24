@@ -2,11 +2,20 @@ return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
-  ft = { "lua", "vim", "vimdoc", "bash", "markdown", "python", 
-        "javascript", "typescript", "html", "css", "c", "rust" }, 
   config = function()
-    require("nvim-treesitter.configs").setup({
-      highlight = { enable = true },
+    local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+    if not status_ok then
+      return
+    end
+    configs.setup({
+      ensure_installed = { 
+        "lua", "vim", "vimdoc", "bash", "markdown", 
+        "python", "javascript", "html", "c", "rust" 
+      },
+      highlight = { 
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
       indent = { enable = true },
     })
   end,

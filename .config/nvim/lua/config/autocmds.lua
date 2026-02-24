@@ -23,8 +23,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       vim.fn.mkdir(dir, "p")
     end
     
-    -- 3. Formateo (Conform)
-    require("conform").format({ bufnr = event.buf, lsp_fallback = true })
+    -- 3. Formateo automático (Conform)
+    -- require("conform").format({ bufnr = event.buf, lsp_fallback = true })
+    -- Comentado para evitar errores si no tienes el plugin conform.nvim
   end,
 })
 
@@ -46,5 +47,19 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function(event)
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+  end,
+})
+
+-- Integración automática de neo-tree al abrir Neovim en un directorio
+-- Detecta si se abre un directorio y carga neo-tree en lugar de netrw
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = augroup("auto_neotree"),
+  callback = function()
+    if vim.fn.argc() == 1 then
+      local arg = vim.fn.argv(0)
+      if vim.fn.isdirectory(arg) == 1 then
+        vim.cmd("Neotree")
+      end
+    end
   end,
 })

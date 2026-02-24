@@ -1,5 +1,6 @@
 return {
   "hiphish/rainbow-delimiters.nvim",
+  event = "BufReadPost", -- 🚀 Se carga solo al abrir archivos
   config = function()
     local rainbow_delimiters = require('rainbow-delimiters')
     

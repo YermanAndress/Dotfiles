@@ -98,12 +98,12 @@ map("n", "<C-w>", ":bd<CR>", opts)            -- Cerrar pestaña actual (Buffer)
 map("n", "<C-b>", ":Neotree toggle<CR>", opts)
 map("n", "<leader>e", ":Neotree focus<CR>", opts)
 
--- Búsqueda (Telescope)
+
+-- Búsqueda (Telescope) - NOTA: Los keybindings principales ahora están en telescope.lua con lazy loading
 map("n", "<C-p>", ":Telescope find_files<CR>", opts)                    -- Buscar archivos por nombre
 map("n", "<C-S-p>", ":Telescope commands<CR>", opts)                    -- Comandos de Neovim
 map("n", "<C-f>", ":Telescope current_buffer_fuzzy_find<CR>", opts)     -- Buscar en archivo actual
 map("n", "<C-S-f>", ":Telescope live_grep<CR>", opts)                   -- Buscar texto en todo el proyecto
-map("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 map("n", "<leader>gs", ":Telescope git_status<CR>", opts)
 
 -- Multi-cursores (vim-visual-multi)
@@ -123,7 +123,7 @@ map("n", "gr", vim.lsp.buf.references, opts)     -- Ver donde se usa
 -- Acciones de código
 map("n", "<leader>rn", vim.lsp.buf.rename, opts)      -- Renombrar variable/función
 map("n", "<leader>ca", vim.lsp.buf.code_action, opts) -- Sugerencias de corrección
-map("n", "<C-S-l>", ":lua require('conform').format()<CR>", opts) -- Formatear código
+map("n", "<leader>f", function() require("conform").format({ async = true }) end, opts) -- Formatear código
 
 -- Navegación Treesitter (Saltar entre funciones/clases)
 map("n", "]f", "<cmd>TSNextFunction<CR>", opts)

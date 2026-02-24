@@ -16,8 +16,20 @@ require("lazy").setup({
     { import = "plugins" }, -- Importa automáticamente todos los archivos en lua/plugins/
   },
   defaults = {
-    lazy = false,
+    -- lazy = true, -- 🚀 LAZY LOADING: Carga solo cuando sea necesario
+    lazy = true,
+
     version = false, -- usa los últimos cambios
   },
   checker = { enabled = true }, -- avisar si hay actualizaciones de plugins
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+      },
+    },
+  },
 })
