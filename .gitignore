@@ -28,6 +28,7 @@
 !.config/i3/**
 !.config/polybar/**
 !.config/systemd/**
+!.config/matplotlib/**
 !.config/starship.toml
 
 # Música
