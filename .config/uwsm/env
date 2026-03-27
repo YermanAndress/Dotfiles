@@ -15,4 +15,4 @@ export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 export TERMINAL=kitty
 export FILE_MANAGER=thunar
-export BROWSER=zen-browser
+export BROWSER=brave

@@ -2,10 +2,10 @@
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
-PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look rsync"
-AUR_PACKAGES="zen-browser-bin pear-desktop pokeget rtl8821ce-dkms-git visual-studio-code-bin"
+PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look rsync brave-bin"
+AUR_PACKAGES="pear-desktop pokeget rtl8821ce-dkms-git visual-studio-code-bin"
 
-echo "🎨 Iniciando instalación estilo 'Dank'.."
+echo "🎨 Iniciando instalación estilo.."
 
 # Crear carpeta temporal única para todo el script
 WORK_DIR=$(mktemp -d)

@@ -6,6 +6,16 @@ export BUN_INSTALL="$HOME/.bun"
 
 export PATH="$FNM_DIR:$BUN_INSTALL/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
+export ANDROID_HOME=/opt/android-sdk
+
+export ANDROID_AVD_HOME="$HOME/.android/avd"
+
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/36.1.0:$PATH"
+
+export PATH="/opt/flutter/bin:$PATH"
+
+export CHROME_EXECUTABLE="/usr/bin/brave"
+
 export FILE_MANAGER="thunar"
 export EDITOR="code --wait"
 export TERMINAL="kitty"
