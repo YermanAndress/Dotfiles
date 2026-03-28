@@ -17,10 +17,11 @@ sudo pacman -S --needed --noconfirm $PACKAGES
 
 # 2. Instalar Paru
 echo "📦 Instalando Paru..."
-git clone https://aur.archlinux.org/paru-bin "$WORK_DIR/paru"
-cd "$WORK_DIR/paru" && makepkg -si --noconfirm
-cd -
+# git clone https://aur.archlinux.org/paru-bin "$WORK_DIR/paru"
+# cd "$WORK_DIR/paru" && makepkg -si --noconfirm
+# cd -
 
+# cargo install --git https://github.com/Morganamilo/paru.git
 
 curl -fsSL https://install.danklinux.com | sh
 
