@@ -30,15 +30,10 @@
 !.config/systemd/**
 !.config/matplotlib/**
 !.config/starship.toml
-
-# Música
-!.config/mpd/**
-!.config/mpv/**
-!.config/rmpc/**
+!.config/brave-flags.conf
 
 # Contenido específico en subcarpetas
 !Documentos/Backup/**
-
 
 # Ignore
 .bun/
@@ -53,6 +48,7 @@
 .pki/
 .vscode/
 .zen/
+.vscode-oss/
 Descargas/
 Documentos/Obsidian\ Vault/
 go/

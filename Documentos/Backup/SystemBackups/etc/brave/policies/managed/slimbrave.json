@@ -1,0 +1,18 @@
+{
+  "SafeBrowsingExtendedReportingEnabled": false,
+  "UrlKeyedAnonymizedDataCollectionEnabled": false,
+  "FeedbackSurveysEnabled": false,
+  "BraveRewardsDisabled": true,
+  "BraveWalletDisabled": true,
+  "BraveVPNDisabled": true,
+  "TorDisabled": true,
+  "BackgroundModeEnabled": false,
+  "MediaRecommendationsEnabled": false,
+  "ShoppingListEnabled": false,
+  "AlwaysOpenPdfExternally": true,
+  "SpellcheckEnabled": false,
+  "PromotionsEnabled": false,
+  "SearchSuggestEnabled": false,
+  "PrintingEnabled": false
+  "AlwaysOpenPdfExternally": false,
+}
