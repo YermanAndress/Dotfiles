@@ -1,31 +1,34 @@
 #!/bin/bash
 
 # --- Configuración VM ---
-PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look firefox polybar picom feh rofi kitty  lxappearance lxqt-policykit scrot slop xclip jq ttf-iosevka-nerd"
-AUR_PACKAGES="pokeget visual-studio-code-bin"
+PACKAGES="zsh bat eza ripgrep sddm thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look firefox polybar picom feh rofi kitty lxappearance lxqt-policykit scrot slop xclip jq ttf-iosevka-nerd code"
+AUR_PACKAGES="pokeget"
 
 echo "🖥️ Iniciando instalación en Máquina Virtual..."
 
 WORK_DIR=$(mktemp -d)
 
-# 1. Actualizar e instalar base
+# 0. Instalar CachyOs Mirros
+curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
+tar xvf cachyos-repo.tar.xz
+cd cachyos-repo
+sudo ./cachyos-repo.sh
+cd "$WORK_DIR"
+
+# 1. Actualizar sistema e instalar dependencias básicas
 sudo pacman -Syu --noconfirm
-sudo pacman -Syu --needed base-devel --noconfirm
+sudo pacman -S --needed base-devel git --noconfirm
 sudo pacman -S --needed --noconfirm $PACKAGES
 
-# Activar servicios de VM inmediatamente
-#sudo systemctl enable --now vboxservice.service
-#sudo systemctl --user enable --now dbus-broker.service
 sudo usermod -aG video $USER
 
 # 2. Instalar Paru
 echo "📦 Instalando Paru..."
-git clone https://aur.archlinux.org/paru "$WORK_DIR/paru"
-cd "$WORK_DIR/paru" && makepkg -si --noconfirm
-cd -
+cargo install --git https://github.com/Morganamilo/paru.git
 
-# 3. AUR
-paru -S --noconfirm $AUR_PACKAGES
+# 3. Instalar aplicaciones de AUR
+echo "🚀 Instalando paquetes de AUR..."
+$HOME/.cargo/bin/paru -S --noconfirm $AUR_PACKAGES
 
 # 4. Starship y Shell
 curl -sS https://starship.rs/install.sh | sh
@@ -34,7 +37,6 @@ sudo chsh -s $(which zsh) $USER
 #  Instalar sddm-theme-tokyo-night
 git clone https://github.com/rototrash/tokyo-night-sddm.git "$WORK_DIR/sddm-theme"
 sudo mv "$WORK_DIR/sddm-theme" /usr/share/sddm/themes/tokyo-night-sddm
-
 echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee /etc/sddm.conf
 
 # 8. Restaurar archivos de sistema (Adaptado a VM)
