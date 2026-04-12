@@ -34,6 +34,8 @@
 
 # Contenido específico en subcarpetas
 !Documentos/Backup/**
+!Pictures/**
+!Scripts/**
 
 # Ignore
 .bun/
@@ -49,6 +51,7 @@
 .vscode/
 .zen/
 .vscode-oss/
+.pub-cache
 Descargas/
 Documentos/Obsidian\ Vault/
 go/
