@@ -2,7 +2,7 @@
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
-PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-bin code"
+PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-bin code wireless-regdb"
 AUR_PACKAGES="pear-desktop pokeget rtl8821ce-dkms-git auto-cpufreq"
 
 echo "🎨 Iniciando instalación estilo.."
@@ -20,17 +20,22 @@ cd "$WORK_DIR"
 # 1. Actualizar sistema e instalar dependencias básicas
 sudo pacman -Syu --noconfirm
 sudo pacman -S --needed base-devel git --noconfirm
-sudo pacman -S --needed --noconfirm $PACKAGES
+for pkg in $PACKAGES; do
+    sudo pacman -S --needed --noconfirm "$pkg" || echo "⚠️ Falló: $pkg, continuando..."
+done
 
 # 2. Instalar Paru
 echo "📦 Instalando Paru..."
 cargo install --git https://github.com/Morganamilo/paru.git
 
+echo "📦 Instalando danklinux..."
 curl -fsSL https://install.danklinux.com | sh
 
 # 3. Instalar aplicaciones de AUR
 echo "🚀 Instalando paquetes de AUR..."
-$HOME/.cargo/bin/paru -S --noconfirm $AUR_PACKAGES
+for pkg in $AUR_PACKAGES; do
+    $HOME/.cargo/bin/paru -S --noconfirm "$pkg" || echo "⚠️ Falló AUR: $pkg, continuando..."
+done
 
 # 4. Configurar Starship y ZSH
 echo "🚀 Instalando Starship..."
@@ -107,15 +112,23 @@ if [ -d "$BACKUP_PATH" ]; then
     fi
 
     # 6. Brave
-    if [ -f "$BACKUP_PATH/brave/policies/managed"]; then
+    if [ -f "$BACKUP_PATH/brave/policies/managed" ]; then
         sudo mkdir -p /etc/brave/policies/managed
         sudo cp -f "$BACKUP_PATH/brave/policies/managed/slimbrave.json" /etc/brave/policies/managed/
     fi
 
     # 7. Blacklist
-    if [ -f "$BACKUP_PATH/modprobe.d"]; then
+    if [ -d "$BACKUP_PATH/modprobe.d" ]; then
         sudo mkdir -p /etc/modprobe.d
         sudo cp -f "$BACKUP_PATH/modprobe.d/blacklist.conf" /etc/modprobe.d/
+    fi
+    if [ -d "$BACKUP_PATH/modprobe.d" ]; then
+        sudo mkdir -p /etc/modprobe.d
+        sudo cp -f "$BACKUP_PATH/modprobe.d/"* /etc/modprobe.d/
+    fi
+    if [ -f "$BACKUP_PATH/conf.d/wireless-regdom" ]; then
+        sudo mkdir -p /etc/conf.d
+        sudo cp -f "$BACKUP_PATH/conf.d/wireless-regdom" /etc/conf.d/
     fi
 
     # Crear punto de montaje para el HDD y regenerar initramfs

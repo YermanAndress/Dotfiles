@@ -1,6 +1,8 @@
 # ===============================================================
 # 1. ENTORNO Y PATHS (Prioridad Máxima)
 # ===============================================================
+typeset -U path PATH
+
 export FNM_DIR="$HOME/.local/share/fnm"
 export BUN_INSTALL="$HOME/.bun"
 
@@ -14,7 +16,8 @@ export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
 
 export PATH="/opt/flutter/bin:$PATH"
 
-export CHROME_EXECUTABLE="/usr/bin/brave"
+# export CHROME_EXECUTABLE="/usr/bin/brave"
+export CHROME_EXECUTABLE="/usr/bin/helium-browser"
 
 export FILE_MANAGER="thunar"
 export EDITOR="code --wait"
@@ -47,27 +50,29 @@ zinit cdreplay -q
 
 # CARGA ASÍNCRONA: No bloquean el inicio de la terminal
 zinit wait"0" lucid for \
-    atload'eval "$(fnm env --use-on-cd --shell zsh)"' \
     zdharma-continuum/fast-syntax-highlighting \
     atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
     blockf zsh-users/zsh-completions \
     zdharma-continuum/history-search-multi-word
 
+eval "$(fnm env --use-on-cd --shell zsh)"
+
 # ===============================================================
 # 3. ESTÉTICA Y PROMPT (Optimización de Starship)
 # ===============================================================
 # Cacheamos la inicialización para no ejecutar el binario cada vez
 
-# if [[ ! -f ~/.starship_init.zsh ]]; then
-#     starship init zsh > ~/.starship_init.zsh
-# fi
+if [[ ! -f ~/.starship_init.zsh || ~/.config/starship.toml -nt ~/.starship_init.zsh ]]; then
+    starship init zsh > ~/.starship_init.zsh
+fi
+source ~/.starship_init.zsh
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # Pokefetch (Se ejecuta en segundo plano para no retrasar el prompt)
 [[ -f ~/Scripts/pokefetch.sh ]] && source ~/Scripts/pokefetch.sh
-#(~/scripts/pokefetch.sh &)
+#(~/Scripts/pokefetch.sh &)
 
 # ===============================================================
 # 4. ALIAS Y MODERN TOOLS
