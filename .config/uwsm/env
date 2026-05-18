@@ -12,6 +12,7 @@ export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
 export MOZ_ENABLE_WAYLAND=1
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export GNOME_KEYRING_CONTROL=/run/user/1000/keyring
 
 export TERMINAL=kitty
 export FILE_MANAGER=thunar

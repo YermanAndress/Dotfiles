@@ -122,3 +122,6 @@ bindkey '^[[A' up-line-or-history               # Arriba
 bindkey '^[[B' down-line-or-history             # Abajo
 bindkey "^[[H" beginning-of-line                # Home
 bindkey "^[[F" end-of-line                      # End
+
+# opencode
+export PATH=/home/gery/.opencode/bin:$PATH

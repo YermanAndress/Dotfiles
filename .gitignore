@@ -54,8 +54,11 @@
 .pub-cache
 Descargas/
 Documentos/Obsidian\ Vault/
+Documentos/Nico
+Documentos/Nico/**
 go/
 Music/
 
 .gitconfig
-.gitcredentials
+.git-credentials
+.git-credentials-nico
