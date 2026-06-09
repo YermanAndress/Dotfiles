@@ -2,7 +2,7 @@
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
-PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-bin code wireless-regdb"
+PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-origin-bin helium-browser-bin code wireless-regdb ananicy-cpp irqbalance memavaild gnome-keyring libsecret zed "
 AUR_PACKAGES="pear-desktop pokeget rtl8821ce-dkms-git auto-cpufreq"
 
 echo "🎨 Iniciando instalación estilo.."
@@ -11,6 +11,7 @@ echo "🎨 Iniciando instalación estilo.."
 WORK_DIR=$(mktemp -d)
 
 # 0. Instalar CachyOs Mirros
+cd "$WORK_DIR"
 curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
 tar xvf cachyos-repo.tar.xz
 cd cachyos-repo
@@ -62,8 +63,12 @@ CONFIG_BACKUP_PATH="$HOME/Dotfiles/"
 
 # 8. Configurar Bare
 git clone --bare "$DOTFILES_REPO" "$HOME/.cfg"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-config checkout -f
+/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout -f
+
+if [ ! -d "$HOME/Dotfiles" ]; then
+    echo "❌ El checkout del repo falló, no se encontró $HOME/Dotfiles"
+    exit 1
+fi
 
 # if [ -d "$CONFIG_BACKUP_PATH" ]; then
 
@@ -106,22 +111,12 @@ if [ -d "$BACKUP_PATH" ]; then
     # 5. Systemd (Network y Resolved)
     if [ -d "$BACKUP_PATH/systemd" ]; then
         sudo mkdir -p /etc/systemd/network
-        sudo cp -f "$BACKUP_PATH/systemd/network/20-wireless.network" /etc/systemd/network/
+        sudo cp -f "$BACKUP_PATH/systemd/network/20-wlan.network" /etc/systemd/network/
         sudo cp -f "$BACKUP_PATH/systemd/resolved.conf" /etc/systemd/resolved.conf
         sudo systemctl enable --now systemd-networkd systemd-resolved
     fi
 
-    # 6. Brave
-    if [ -f "$BACKUP_PATH/brave/policies/managed" ]; then
-        sudo mkdir -p /etc/brave/policies/managed
-        sudo cp -f "$BACKUP_PATH/brave/policies/managed/slimbrave.json" /etc/brave/policies/managed/
-    fi
-
-    # 7. Blacklist
-    if [ -d "$BACKUP_PATH/modprobe.d" ]; then
-        sudo mkdir -p /etc/modprobe.d
-        sudo cp -f "$BACKUP_PATH/modprobe.d/blacklist.conf" /etc/modprobe.d/
-    fi
+    # 6. Blacklist
     if [ -d "$BACKUP_PATH/modprobe.d" ]; then
         sudo mkdir -p /etc/modprobe.d
         sudo cp -f "$BACKUP_PATH/modprobe.d/"* /etc/modprobe.d/
@@ -139,12 +134,38 @@ else
     echo "⚠️  No se encontró la carpeta $BACKUP_PATH. Saltando paso."
 fi
 
+sudo systemctl enable --now ananicy-cpp irqbalance memavaild
+sudo systemctl disable cachyos-rate-mirrors.service
+sudo systemctl disable systemd-networkd-wait-online.service
+sudo -u $USER systemctl --user enable gnome-keyring-daemon.socket
+sudo -u $USER systemctl --user enable hyprpolkitagent.service
+
+# Falta el sysctl de vm
+echo "vm.swappiness=10" | sudo tee /etc/sysctl.d/99-vm.conf
+echo "vm.vfs_cache_pressure=50" | sudo tee -a /etc/sysctl.d/99-vm.conf
+
+# Falta zram-generator
+echo "[zram0]" | sudo tee /etc/systemd/zram-generator.conf
+echo "zram-size = ram / 2" | sudo tee -a /etc/systemd/zram-generator.conf
+echo "compression-algorithm = zstd" | sudo tee -a /etc/systemd/zram-generator.conf
+
+sudo tee /etc/auto-cpufreq.conf << 'EOF'
+[charger]
+governor = performance
+scaling_min_freq = 400000
+scaling_max_freq = 3700000
+
+[battery]
+governor = powersave
+scaling_min_freq = 400000
+scaling_max_freq = 2100000
+turbo = auto
+EOF
 
 # Limpieza final de temporales
 rm -rf "$WORK_DIR"
 
 # Configurar el alias de forma permanente para esta sesión
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-config config --local status.showUntrackedFiles no
+/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME config --local status.showUntrackedFiles no
 
 echo "✨ ¡Hecho! Tu sistema Arch está listo. Reinicia para aplicar todos los cambios."
