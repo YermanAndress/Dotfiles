@@ -15,19 +15,12 @@ return {
         width = 35,
       },
       filesystem = {
-        -- Hijack netrw cuando abres un directorio
         hijack_netrw_behavior = "open_default",
-        
-        -- Sigue el archivo actual
         follow_current_file = {
           enabled = true,
           leave_dirs_open = false,
         },
-
-        -- Compacta carpetas vacías
         group_empty_dirs = true,
-
-        -- Filtros
         filtered_items = {
           hide_dotfiles = false,
           hide_gitignored = true,

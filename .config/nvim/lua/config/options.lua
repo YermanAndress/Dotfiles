@@ -26,11 +26,14 @@ opt.confirm = true
 ---------------------------------------------------------
 -- RENDIMIENTO 🚀
 ---------------------------------------------------------
-opt.updatetime = 300         -- Refresco de diagnósticos (ms)
-opt.timeoutlen = 400         -- Tiempo para keymaps (ms)
-opt.lazyredraw = true        -- 🚀 Evita redraws innecesarios (MEJOR)
-opt.synmaxcol = 200          -- 🚀 Resaltado de sintaxis hasta columna 200
+opt.updatetime = 300         -- Refresco de diagnósticos (ms) - Óptimo para multi-lenguaje
+opt.timeoutlen = 400         -- Tiempo para keymaps (ms) - Responsivo
+opt.lazyredraw = true        -- 🚀 Evita redraws innecesarios
+opt.synmaxcol = 300          -- 🚀 Resaltado de sintaxis hasta columna 300 (aumentado para líneas largas)
 opt.ttyfast = true           -- 🚀 Asume conexión rápida a terminal
+-- opt.regexpengine = 1      -- 🚫 Desactivado: el motor OLD es más lento en JSX/TSX
+opt.redrawtime = 5000        -- Timeout para redraw en ms (evita bloqueos)
+opt.shada = { "!", "'1000", "<50", "s10", "h" } -- Mejora persistencia eficiente
 
 ---------------------------------------------------------
 -- DISPLAY Y NAVEGACIÓN

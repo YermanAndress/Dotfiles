@@ -17,3 +17,4 @@ export GNOME_KEYRING_CONTROL=/run/user/1000/keyring
 export TERMINAL=kitty
 export FILE_MANAGER=thunar
 export BROWSER=helium-browser
+export KOPUZ_BRAVE_BIN=/usr/bin/helium-browser

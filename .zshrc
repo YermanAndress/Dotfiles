@@ -16,8 +16,12 @@ export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
 
 export PATH="/opt/flutter/bin:$PATH"
 
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
 # export CHROME_EXECUTABLE="/usr/bin/brave"
 export CHROME_EXECUTABLE="/usr/bin/helium-browser"
+
+export KOPUZ_CHROMIUM_BIN="/usr/bin/helium-browser"
 
 export FILE_MANAGER="thunar"
 export EDITOR="code --wait"

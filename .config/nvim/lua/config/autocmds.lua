@@ -5,7 +5,7 @@ end
 -- Resaltar al copiar
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
-  callback = function() vim.highlight.on_yank() end,
+  callback = function() vim.hl.on_yank() end,
 })
 
 -- Ajustes de guardado: Limpieza + Creación de directorios
@@ -23,9 +23,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
       vim.fn.mkdir(dir, "p")
     end
     
-    -- 3. Formateo automático (Conform)
-    -- require("conform").format({ bufnr = event.buf, lsp_fallback = true })
-    -- Comentado para evitar errores si no tienes el plugin conform.nvim
+    -- 3. Formateo automático (Conform) - se maneja desde plugins/conform.lua
+    -- La configuración está centralizada en conform.lua con format_on_save
   end,
 })
 
@@ -50,15 +49,14 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Integración automática de neo-tree al abrir Neovim en un directorio
--- Detecta si se abre un directorio y carga neo-tree en lugar de netrw
+-- Abrir automáticamente Neo-tree al iniciar con un directorio
 vim.api.nvim_create_autocmd("VimEnter", {
-  group = augroup("auto_neotree"),
+  group = augroup("auto_neo_tree"),
   callback = function()
     if vim.fn.argc() == 1 then
       local arg = vim.fn.argv(0)
       if vim.fn.isdirectory(arg) == 1 then
-        vim.cmd("Neotree")
+        vim.cmd("Neotree toggle")
       end
     end
   end,

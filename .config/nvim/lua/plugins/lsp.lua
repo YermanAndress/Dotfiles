@@ -4,24 +4,22 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
   },
   config = function()
     -- 1. Setup básico de Mason
     require("mason").setup()
 
     -- 2. Capacidades para el autocompletado
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
     
     -- 3. Configuración de servidores mediante Mason-Lspconfig
     require("mason-lspconfig").setup({
-      ensure_installed = {
-        "lua_ls", "pyright", "bashls", "yamlls", "jsonls",
-        "ts_ls", "html", "cssls", "eslint",
-      },
+      automatic_installation = true,
       handlers = {
         -- Handler por defecto para todos los servidores
         function(server_name)
+          if server_name == "jdtls" then return end
           local opts = {
             capabilities = capabilities,
           }

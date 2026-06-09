@@ -8,11 +8,13 @@ return {
       return
     end
     configs.setup({
-      ensure_installed = { 
-        "lua", "vim", "vimdoc", "bash", "markdown", 
-        "python", "javascript", "html", "c", "rust" 
+      prefer_git = false,
+      ensure_installed = {
+        "lua", "vim", "vimdoc", "bash", "markdown",
+        "python", "javascript", "typescript", "tsx",
+        "html", "css", "c", "rust", "java",
       },
-      highlight = { 
+      highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
       },

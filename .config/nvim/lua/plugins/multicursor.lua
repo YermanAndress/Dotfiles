@@ -1,6 +1,7 @@
 return {
   'mg979/vim-visual-multi',
   branch = 'master',
+  event = "VeryLazy",  -- 🚀 Se carga después de plugins críticos
   init = function()
     -- Desactivar mapas por defecto para usar los de VS Code
     vim.g.VM_default_mappings = 0

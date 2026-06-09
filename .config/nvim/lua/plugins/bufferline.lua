@@ -2,6 +2,7 @@
 return {
   "akinsho/bufferline.nvim",
   version = "*",
+  event = "VeryLazy",  -- 🚀 Se carga después de plugins críticos
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("bufferline").setup({
