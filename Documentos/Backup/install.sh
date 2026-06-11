@@ -1,8 +1,8 @@
-#!/bin/bash
+120;6u#!/bin/bash
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
-PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-origin-bin helium-browser-bin code wireless-regdb ananicy-cpp irqbalance gnome-keyring libsecret zed zram-generator unzip qt6-graphicaleffects qt6-quickcontrols qt6-quickcontrols2 qt6-declarative"
+PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-origin-bin helium-browser-bin code wireless-regdb ananicy-cpp irqbalance gnome-keyring libsecret zed zram-generator unzip qt6-graphicaleffects qt6-quickcontrols qt6-quickcontrols2 qt6-declarative fastfetch unzip micro hyprpolkitagent"
 AUR_PACKAGES="pear-desktop pokeget rtl8821ce-dkms-git auto-cpufreq memavaild"
 
 echo "🎨 Iniciando instalación estilo.."
@@ -13,8 +13,7 @@ WORK_DIR=$(mktemp -d)
 # 0. Instalar CachyOs Mirros
 cd "$WORK_DIR"
 curl https://mirror.cachyos.org/cachyos-repo.tar.xz -o cachyos-repo.tar.xz
-tar xvf cachyos-repo.tar.xz
-cd cachyos-repo
+tar xvf cachyos-repo.tar.xz && cd cachyos-repo
 sudo ./cachyos-repo.sh
 cd "$WORK_DIR"
 
