@@ -3,9 +3,12 @@
 # ===============================================================
 typeset -U path PATH
 
-export FNM_DIR="$HOME/.local/share/fnm"
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$FNM_DIR:$BUN_INSTALL/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+[ -s "/home/gery/.bun/_bun" ] && source "/home/gery/.bun/_bun"
+export PATH="$BUN_INSTALL/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/gery/.opencode/bin:$PATH
 
 # Android SDK
 export ANDROID_HOME=/opt/android-sdk
@@ -59,8 +62,6 @@ zinit wait"0" lucid for \
     blockf zsh-users/zsh-completions \
     zdharma-continuum/history-search-multi-word
 
-eval "$(fnm env --use-on-cd --shell zsh)"
-
 # ===============================================================
 # 3. ESTÉTICA Y PROMPT (Optimización de Starship)
 # ===============================================================
@@ -83,9 +84,9 @@ source ~/.starship_init.zsh
 alias proyectos="cd /mnt/HDD/Programacion/Proyectos"
 alias uni="cd /mnt/HDD/Programacion/Universidad"
 alias cursos="cd /mnt/HDD/Programacion/Cursos"
-alias idea='uwsm app -- intellij-idea-ultimate-edition'
-alias code='uwsm app -- code'
-alias obsidian='uwsm app -- .local/bin/Obsidian-1.11.7.AppImage'
+alias idea='uwsm-app intellij-idea-ultimate-edition'
+alias code='uwsm-app code'
+alias obsidian='uwsm-app .local/bin/Obsidian-1.11.7.AppImage'
 
 # eza (sustituto de ls)
 alias ls='eza --icons --group-directories-first'
@@ -100,7 +101,6 @@ alias cls='clear'
 
 alias pyvenv='python -m venv .venv'
 alias pyactivate='source .venv/bin/activate'
-
 
 alias config="/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME"
 
@@ -125,6 +125,3 @@ bindkey '^[[A' up-line-or-history               # Arriba
 bindkey '^[[B' down-line-or-history             # Abajo
 bindkey "^[[H" beginning-of-line                # Home
 bindkey "^[[F" end-of-line                      # End
-
-# opencode
-export PATH=/home/gery/.opencode/bin:$PATH

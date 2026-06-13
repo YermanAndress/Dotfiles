@@ -1,10 +1,14 @@
 # <file system> <dir> <type> <options> <dump> <pass>
 
-# / (SSD NVMe) - Cambiado a noatime para menos desgaste
-UUID=a9ca564a-0fac-407d-809a-bcf50877b072   /           ext4        noatime 0 1
+# / (SSD NVMe)
+UUID=702e821f-a5bc-49d1-b6f2-dc8d6ea2b4c6	/			btrfs	noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=@		0 0
+
+UUID=702e821f-a5bc-49d1-b6f2-dc8d6ea2b4c6	/home		btrfs	noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=@home	0 0
+
+UUID=702e821f-a5bc-49d1-b6f2-dc8d6ea2b4c6	/var/cache	btrfs	noatime,compress=zstd:1,ssd,discard=async,space_cache=v2,subvol=@cache	0 0
 
 # /boot
-UUID=399C-95A2  /boot       vfat    defaults      0       2
+UUID=3257-BEA8			/boot		vfat		defaults		0 2
 
-# HDD (NTFS) - Usando ntfs3 (más rápido) y nofail (seguridad)
-UUID=4AC0AFE8C0AFD909 /mnt/HDD ntfs3 defaults,uid=1000,gid=1000,umask=022,nofail 0 0
+# HDD (NTFS)
+UUID=4AC0AFE8C0AFD909	/mnt/HDD		ntfs3		defaults,noauto,uid=1000,gid=1000,umask=022,nofail,x-systemd.automount,x-systemd.idle-timeout=60	0 0

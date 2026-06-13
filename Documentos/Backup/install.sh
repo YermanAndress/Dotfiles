@@ -1,4 +1,4 @@
-120;6u#!/bin/bash
+#!/bin/bash
 
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
@@ -85,7 +85,7 @@ fi
 
 if [ -d "$BACKUP_PATH" ]; then
     # 1. Archivos base en /etc
-    sudo cp -f "$BACKUP_PATH/fstab" /etc/fstab
+    # sudo cp -f "$BACKUP_PATH/fstab" /etc/fstab
     sudo cp -f "$BACKUP_PATH/mkinitcpio.conf" /etc/mkinitcpio.conf
     sudo cp -f "$BACKUP_PATH/pacman.conf" /etc/pacman.conf
 
