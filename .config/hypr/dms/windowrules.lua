@@ -1,0 +1,17 @@
+-- Reglas de ventana personalizadas migradas de hyprland.conf
+
+hl.window_rule({ match = { class = "^(org\\.gnome\\.)" }, rounding = 12, border_size = 0 })
+hl.window_rule({ match = { class = "^(gnome-control-center)$" }, tile = true })
+hl.window_rule({ match = { class = "^(pavucontrol)$" }, tile = true })
+hl.window_rule({ match = { class = "^(nm-connection-editor)$" }, tile = true })
+hl.window_rule({ match = { class = "^(blueman-manager)$" }, float = true })
+hl.window_rule({ match = { class = "^(xdg-desktop-portal)$" }, float = true })
+hl.window_rule({ match = { class = "^(lxqt-policykit-agent)$", title = "^(Autenticación requerida)$" }, float = true })
+hl.window_rule({ match = { class = "^(thunar)$", title = "^(Confirmar para reemplazar archivos)$" }, float = true })
+hl.window_rule({ match = { class = "^(thunar)$", title = "^(Progreso de las operaciones de archivo)$" }, float = true })
+hl.window_rule({ match = { class = "^(com.danklinux.dms)$" }, float = true })
+hl.window_rule({ match = { class = "^(dev.zed.Zed)$", title = "^(Zed — Settings)$" }, float = true })
+hl.window_rule({ match = { class = "^(python3)$" }, float = true })
+hl.window_rule({ match = { class = "^(xdg-desktop-portal-gtk)$", title = "^(Abrir archivos)$" }, float = true })
+hl.window_rule({ match = { class = "^(VirtualBox Machine)$" } })
+hl.window_rule({ match = { class = "^(xarchiver)$" }, float = true })

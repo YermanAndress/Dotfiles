@@ -11,13 +11,12 @@ pokemon=$POKEMON_LIST[$(( (RANDOM % $#POKEMON_LIST) + 1 ))]
 sprite=$(pokeget "$pokemon" --hide-name 2>/dev/null)
 
 # 3. Cálculos de altura usando Zsh (0ms de coste)
-# Dividimos el sprite en un array de líneas para contar su longitud
 sprite_lines=("${(f)sprite}")
 SPRITE_HEIGHT=$#sprite_lines
 
-# Fastfetch suele tener unas 15-18 líneas fijas. 
+# Fastfetch suele tener unas 15-18 líneas fijas.
 # Evitamos ejecutar 'fastfetch --pipe | wc' en cada apertura.
-FETCHER_LINES=16 
+FETCHER_LINES=16
 
 # 4. Cálculo de Padding Vertical
 PAD_TOP=$(( (FETCHER_LINES - SPRITE_HEIGHT) / 2 ))

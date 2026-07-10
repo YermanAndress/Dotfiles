@@ -20,9 +20,13 @@ export PATH="/opt/flutter/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
 
 # Navegador
-export CHROME_EXECUTABLE="/usr/bin/helium-browser"
+#export CHROME_EXECUTABLE="/usr/bin/helium-browser"
+export CHROME_EXECUTABLE="/usr/bin/brave-origin"
+
 export BROWSER="/usr/bin/helium-browser"
-export KOPUZ_CHROMIUM_BIN="/usr/bin/helium-browser"
+#export KOPUZ_CHROMIUM_BIN="/usr/bin/helium-browser"
+export KOPUZ_CHROMIUM_BIN="/usr/bin/brave-origin"
+
 
 # Otras apps
 export FILE_MANAGER="thunar"
