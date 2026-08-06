@@ -106,6 +106,8 @@ alias cls='clear'
 alias pyvenv='python -m venv .venv'
 alias pyactivate='source .venv/bin/activate'
 
+alias xctu='GTK_THEME=Adwaita:light /opt/Digi/XCTU-NG/app'
+
 alias config="/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME"
 
 # ===============================================================
