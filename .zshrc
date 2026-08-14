@@ -27,6 +27,7 @@ export BROWSER="/usr/bin/helium-browser"
 #export KOPUZ_CHROMIUM_BIN="/usr/bin/helium-browser"
 export KOPUZ_CHROMIUM_BIN="/usr/bin/brave-origin"
 
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 # Otras apps
 export FILE_MANAGER="thunar"

@@ -1,1 +1,0 @@
-root=PARTUUID=2f8a889c-b8d8-4306-8572-008af860f33b quiet nowatchdog mitigations=off loglevel=3 nvme_core.default_ps_max_latency_us=5500 rw
