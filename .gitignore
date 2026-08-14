@@ -7,7 +7,7 @@
 # 3. PERMITIR carpetas raíz (esto es necesario para que Git pueda entrar)
 !.config/
 !.zshrc
-!Documentos/
+!Documents/
 !Pictures/
 !Scripts/
 !Descargas/
