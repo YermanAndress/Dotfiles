@@ -33,7 +33,7 @@
 !.config/brave-flags.conf
 
 # Contenido específico en subcarpetas
-!Documentos/Backup/**
+!Documents/Backup/**
 !Pictures/**
 !Scripts/**
 
@@ -52,6 +52,7 @@
 .zen/
 .vscode-oss/
 .pub-cache
+.platformio/
 Descargas/
 Documentos/Obsidian\ Vault/
 Documentos/Nico
