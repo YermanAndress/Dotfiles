@@ -49,7 +49,7 @@ sudo systemctl enable --now qemu-guest-agent
 
 # 8. Restaurar archivos de sistema (Adaptado a VM)
 echo "🔧 Restaurando configuraciones..."
-SYSTEM_BACKUP_PATH="$HOME/Dotfiles/Documentos/Backup/SystemBackups/"
+SYSTEM_BACKUP_PATH="$HOME/Dotfiles/Documents/Backup/SystemBackups/"
 
 git clone --bare "$DOTFILES_REPO" "$HOME/.cfg"
 /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout -f

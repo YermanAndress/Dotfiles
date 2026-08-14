@@ -3,7 +3,7 @@
 # --- Configuración ---
 DOTFILES_REPO="https://github.com/YermanAndress/Dotfiles.git"
 PACKAGES="linux-headers linux-firmware xf86-video-amdgpu mesa libva-mesa-driver amd-ucode zsh bat eza ripgrep thunar ttf-firacode-nerd ttf-nerd-fonts-symbols nwg-look brave-origin-bin helium-browser-bin code wireless-regdb ananicy-cpp irqbalance gnome-keyring libsecret zed zram-generator unzip qt6-graphicaleffects qt6-quickcontrols qt6-quickcontrols2 qt6-declarative fastfetch unzip micro hyprpolkitagent"
-AUR_PACKAGES="pear-desktop pokeget rtl8821ce-dkms-git auto-cpufreq memavaild"
+AUR_PACKAGES="pear-desktop pokeget auto-cpufreq memavaild"
 
 echo "🎨 Iniciando instalación estilo.."
 
@@ -57,7 +57,7 @@ sudo systemctl enable --now auto-cpufreq
 
 # 7. Restaurar archivos de sistema (SystemBackups)
 echo "🔧 Restaurando configuraciones de sistema (/etc)..."
-BACKUP_PATH="$HOME/Dotfiles/Documentos/Backup/SystemBackups/etc"
+BACKUP_PATH="$HOME/Dotfiles/Documents/Backup/SystemBackups/etc"
 CONFIG_BACKUP_PATH="$HOME/Dotfiles/"
 
 # 8. Configurar Bare
@@ -69,23 +69,10 @@ if [ ! -d "$HOME/Dotfiles" ]; then
     exit 1
 fi
 
-# if [ -d "$CONFIG_BACKUP_PATH" ]; then
-
-#     cp -f "$CONFIG_BACKUP_PATH/.config" ~ -r
-#     cp -f "$CONFIG_BACKUP_PATH/Documentos" ~ -r
-#     cp -f "$CONFIG_BACKUP_PATH/Descargas" ~ -r
-#     cp -f "$CONFIG_BACKUP_PATH/Pictures" ~ -r
-#     cp -f "$CONFIG_BACKUP_PATH/Scripts" ~ -r
-#     chmod +x $HOME/Scripts/*
-#     cp -f "$CONFIG_BACKUP_PATH/.zshrc" ~ -r
-
-# fi
-
 # 9. Copiar Archivos
 
 if [ -d "$BACKUP_PATH" ]; then
     # 1. Archivos base en /etc
-    # sudo cp -f "$BACKUP_PATH/fstab" /etc/fstab
     sudo cp -f "$BACKUP_PATH/mkinitcpio.conf" /etc/mkinitcpio.conf
     sudo cp -f "$BACKUP_PATH/pacman.conf" /etc/pacman.conf
 
@@ -123,6 +110,13 @@ if [ -d "$BACKUP_PATH" ]; then
     if [ -f "$BACKUP_PATH/conf.d/wireless-regdom" ]; then
         sudo mkdir -p /etc/conf.d
         sudo cp -f "$BACKUP_PATH/conf.d/wireless-regdom" /etc/conf.d/
+    fi
+
+    # 7. Systemd (Network)
+    if [ -d "$BACKUP_PATH/sysctl.d/" ]; then
+        sudo mkdir -p /etc/sysctl.d
+        sudo cp -f "$BACKUP_PATH/sysctl.d/"* /etc/sysctl.d/
+        sudo systemctl enable --now systemd-networkd systemd-resolved
     fi
 
     # Crear punto de montaje para el HDD y regenerar initramfs

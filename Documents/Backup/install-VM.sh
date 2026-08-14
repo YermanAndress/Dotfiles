@@ -50,7 +50,7 @@ echo -e "[Theme]\nCurrent=tokyo-night-sddm" | sudo tee /etc/sddm.conf
 
 # 8. Restaurar archivos de sistema (Adaptado a VM)
 echo "🔧 Restaurando configuraciones..."
-SYSTEM_BACKUP_PATH="$HOME/Dotfiles/Documentos/Backup/SystemBackups/etc"
+SYSTEM_BACKUP_PATH="$HOME/Dotfiles/Documents/Backup/SystemBackups/etc"
 
 git clone --bare "$DOTFILES_REPO" "$HOME/.cfg"
 /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME checkout -f
