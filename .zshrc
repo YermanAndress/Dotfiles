@@ -104,10 +104,11 @@ alias grep='rg'
 alias cat='bat'
 alias cls='clear'
 
-alias pyvenv='python -m venv .venv'
+alias pyvenv='uv venv'
 alias pyactivate='source .venv/bin/activate'
 
 alias xctu='GTK_THEME=Adwaita:light /opt/Digi/XCTU-NG/app'
+alias fix-code='sudo jq ". + {\"nameShort\": \"Code\", \"nameLong\": \"Visual Studio Code\", \"quality\": \"stable\", \"serviceUrl\": \"https://marketplace.visualstudio.com/_apis/public/gallery\", \"itemUrl\": \"https://marketplace.visualstudio.com/items\"}" /usr/lib/code/product.json | sudo tee /usr/lib/code/product.json > /dev/null && echo "Code parcheado con éxito."'
 
 alias config="/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME"
 
