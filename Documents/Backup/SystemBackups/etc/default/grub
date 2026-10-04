@@ -8,7 +8,7 @@ GRUB_TIMEOUT_STYLE=menu
 GRUB_DISTRIBUTOR="Arch"
 
 # Parámetros del Kernel
-GRUB_CMDLINE_LINUX_DEFAULT="root=UUID=702e821f-a5bc-49d1-b6f2-dc8d6ea2b4c6 rootflags=subvol=@ rootfstype=btrfs quiet nowatchdog mitigations=off loglevel=3 nvme_core.default_ps_max_latency_us=5500 tsc=reliable clocksource=tsc zswap.enabled=0"
+GRUB_CMDLINE_LINUX_DEFAULT="root=UUID=702e821f-a5bc-49d1-b6f2-dc8d6ea2b4c6 rootflags=subvol=@ rootfstype=btrfs quiet nowatchdog mitigations=off loglevel=3 nvme_core.default_ps_max_latency_us=5500 tsc=reliable clocksource=tsc 8250.nr_uarts=0 zswap.enabled=0"
 GRUB_CMDLINE_LINUX=""
 
 # Módulos y pantalla

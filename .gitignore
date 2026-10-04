@@ -54,9 +54,12 @@
 .pub-cache
 .platformio/
 Descargas/
-Documentos/Obsidian\ Vault/
-Documentos/Nico
-Documentos/Nico/**
+Documents/Obsidian\ Vault/
+Documents/Nico
+Documents/Nico/**
+Documents/Uni/**
+Scripts/git-switch.sh
+gitClones/**
 go/
 Music/
 

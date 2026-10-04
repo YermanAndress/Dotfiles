@@ -3,36 +3,31 @@
 # ===============================================================
 typeset -U path PATH
 
-export BUN_INSTALL="$HOME/.bun"
-[ -s "/home/gery/.bun/_bun" ] && source "/home/gery/.bun/_bun"
-export PATH="$BUN_INSTALL/bin:$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-
-# opencode
-export PATH=/home/gery/.opencode/bin:$PATH
-
-# Android SDK
+# Variables de entorno
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_AVD_HOME="$HOME/.android/avd"
-export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/build-tools/36.1.0:$PATH"
-
-# Flutter
-export PATH="/opt/flutter/bin:$PATH"
-export PATH="$HOME/.pub-cache/bin:$PATH"
-
-# Navegador
-#export CHROME_EXECUTABLE="/usr/bin/helium-browser"
-export CHROME_EXECUTABLE="/usr/bin/brave-origin"
-
-export BROWSER="/usr/bin/helium-browser"
-#export KOPUZ_CHROMIUM_BIN="/usr/bin/helium-browser"
-export KOPUZ_CHROMIUM_BIN="/usr/bin/brave-origin"
-
 export LIBVIRT_DEFAULT_URI="qemu:///system"
-
-# Otras apps
+export BROWSER="/usr/bin/helium-browser"
 export FILE_MANAGER="thunar"
 export EDITOR="code --wait"
-export TERMINAL="kitty"
+export TERMINAL="footclient"
+
+# Directorios a añadir al PATH (solo los que existen)
+path_dirs=(
+    "$HOME/.bun/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.local/bin"
+    "$HOME/.opencode/bin"
+    "$HOME/.pub-cache/bin"
+    "$ANDROID_HOME/cmdline-tools/latest/bin"
+    "$ANDROID_HOME/platform-tools"
+    "$ANDROID_HOME/build-tools/37.0.0/")
+
+# Añadir cada directorio al PATH solo si existe
+for dir in $path_dirs; do
+    [[ -d "$dir" ]] && path=("$dir" $path)
+done
+export PATH
 
 # ===============================================================
 # 2. GESTOR DE PLUGINS: ZINIT (Configuración Ultra-Turbo)
@@ -45,22 +40,18 @@ fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
-# Optimización de compinit: Solo escanea si el dump tiene más de 24 horas
+# Optimización de compinit con caché
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.m-1) ]]; then
-    compinit -C
-else
-    compinit -i -d ~/.zcompdump
-fi
+zstyle ':completion:*' use-cache true
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/zcompcache"
+compinit -u
 
 # Estilos de autocompletado
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-zinit cdreplay -q
-
 # CARGA ASÍNCRONA: No bloquean el inicio de la terminal
-zinit wait"0" lucid for \
+zinit wait"0" lucid atinit"zinit cdreplay -q" for \
     zdharma-continuum/fast-syntax-highlighting \
     atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions \
@@ -71,27 +62,24 @@ zinit wait"0" lucid for \
 # 3. ESTÉTICA Y PROMPT (Optimización de Starship)
 # ===============================================================
 # Cacheamos la inicialización para no ejecutar el binario cada vez
-
 if [[ ! -f ~/.starship_init.zsh || ~/.config/starship.toml -nt ~/.starship_init.zsh ]]; then
     starship init zsh > ~/.starship_init.zsh
 fi
 source ~/.starship_init.zsh
 
-# eval "$(starship init zsh)"
-
 # Pokefetch (Se ejecuta en segundo plano para no retrasar el prompt)
-[[ -f ~/Scripts/pokefetch.sh ]] && source ~/Scripts/pokefetch.sh
-#(~/Scripts/pokefetch.sh &)
+source ~/Scripts/pokefetch.sh
 
 # ===============================================================
 # 4. ALIAS Y MODERN TOOLS
 # ===============================================================
-alias proyectos="cd /mnt/HDD/Programacion/Proyectos"
-alias uni="cd /mnt/HDD/Programacion/Universidad"
-alias cursos="cd /mnt/HDD/Programacion/Cursos"
+# alias proyectos="cd /mnt/HDD/Programacion/Proyectos"
+# alias uni="cd /mnt/HDD/Programacion/Universidad"
+alias uni="cd ~/Documents/Uni/"
+# alias cursos="cd /mnt/HDD/Programacion/Cursos"
 alias idea='uwsm-app intellij-idea-ultimate-edition'
 alias code='uwsm-app code'
-alias obsidian='uwsm-app .local/bin/Obsidian-1.11.7.AppImage'
+alias obsidian='uwsm-app .local/bin/Obsidian.AppImage'
 
 # eza (sustituto de ls)
 alias ls='eza --icons --group-directories-first'
@@ -107,10 +95,8 @@ alias cls='clear'
 alias pyvenv='uv venv'
 alias pyactivate='source .venv/bin/activate'
 
-alias xctu='GTK_THEME=Adwaita:light /opt/Digi/XCTU-NG/app'
-alias fix-code='sudo jq ". + {\"nameShort\": \"Code\", \"nameLong\": \"Visual Studio Code\", \"quality\": \"stable\", \"serviceUrl\": \"https://marketplace.visualstudio.com/_apis/public/gallery\", \"itemUrl\": \"https://marketplace.visualstudio.com/items\"}" /usr/lib/code/product.json | sudo tee /usr/lib/code/product.json > /dev/null && echo "Code parcheado con éxito."'
-
-alias config="/usr/bin/git --git-dir=\$HOME/.cfg/ --work-tree=\$HOME"
+# Config (dotfiles con git)
+alias config='git --git-dir="$HOME/.cfg/" --work-tree="$HOME"'
 
 # ===============================================================
 # 5. HISTORIAL Y BINDS (Fijados para Wayland)
@@ -133,3 +119,6 @@ bindkey '^[[A' up-line-or-history               # Arriba
 bindkey '^[[B' down-line-or-history             # Abajo
 bindkey "^[[H" beginning-of-line                # Home
 bindkey "^[[F" end-of-line                      # End
+
+# bun completions
+[ -s "/home/gery/.bun/_bun" ] && source "/home/gery/.bun/_bun"

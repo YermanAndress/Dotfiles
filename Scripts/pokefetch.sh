@@ -29,4 +29,4 @@ $FETCHER \
     --logo-padding-top $PAD_TOP \
     --logo-padding-left 4 \
     --logo-padding-right 4 \
-    --disable-linewrap true <<< "$sprite"
+    --disable-linewrap <<< "$sprite"
