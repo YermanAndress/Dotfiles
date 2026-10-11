@@ -9,7 +9,7 @@ UUID=702e821f-a5bc-49d1-b6f2-dc8d6ea2b4c6	/var/cache	btrfs	noatime,compress=zstd
 UUID=3257-BEA8			/boot		vfat	defaults	0 2
 
 # HDD (NTFS-3G)
-UUID=4AC0AFE8C0AFD909   /mnt/HDD    ntfs-3g		noauto,uid=1000,gid=1000,fmask=133,dmask=022,nofail,x-systemd.automount,x-systemd.idle-timeout=60,x-systemd.device-timeout=10,windows_names,noatime,prealloc    0 0
+UUID=4AC0AFE8C0AFD909   /mnt/HDD    ntfs-3g		noauto,uid=1000,gid=1000,fmask=133,dmask=022,nofail,x-systemd.automount,x-systemd.idle-timeout=60,x-systemd.device-timeout=10,windows_names,x-gvfs-show,noatime,prealloc    0 0
 
 # HDD (NTFS)
-# UUID=4AC0AFE8C0AFD909   /mnt/HDD    ntfs3		noauto,uid=1000,gid=1000,umask=022,nofail,x-systemd.automount,x-systemd.idle-timeout=60,x-systemd.device-timeout=10,windows_names,noatime,prealloc    0 0
+# UUID=4AC0AFE8C0AFD909   /mnt/HDD    ntfs3		noauto,uid=1000,gid=1000,umask=022,nofail,x-systemd.automount,x-systemd.idle-timeout=60,x-systemd.device-timeout=10,windows_names,x-gvfs-show,noatime,prealloc    0 0

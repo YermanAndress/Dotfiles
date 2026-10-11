@@ -75,9 +75,9 @@ source ~/Scripts/pokefetch.sh
 # ===============================================================
 # alias proyectos="cd /mnt/HDD/Programacion/Proyectos"
 # alias uni="cd /mnt/HDD/Programacion/Universidad"
-alias uni="cd ~/Documents/Uni/"
 # alias cursos="cd /mnt/HDD/Programacion/Cursos"
-alias idea='uwsm-app intellij-idea-ultimate-edition'
+alias uni="cd ~/Programacion/Uni"
+alias proyectos="cd ~/Programacion/Proyectos"
 alias code='uwsm-app code'
 alias obsidian='uwsm-app .local/bin/Obsidian.AppImage'
 

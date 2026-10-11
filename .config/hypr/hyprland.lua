@@ -8,6 +8,7 @@ hl.on("hyprland.start", function()
 
     hl.exec_cmd("uwsm-app noctalia")
     hl.exec_cmd("uwsm-app -- foot --server")
+    hl.exec_cmd("uwsm-app -- thunar --daemon")
 end)
 
 hl.config({
